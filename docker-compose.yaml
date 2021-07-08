@@ -4,12 +4,16 @@ services:
     app:
         build: .
         entrypoint: ./.docker/entrypoint.sh
+        # entrypoint: dockerize -wait tcp://db:5432 -timeout 40s ./.docker/entrypoint.sh
         container_name: api-jest-store
         ports:
             - 3000:3000
 
         volumes: 
             - .:/home/node/app
+        
+        depends_on:
+            - db
     db: 
         build: .docker/postgres
         container_name: api-jest-store-db
