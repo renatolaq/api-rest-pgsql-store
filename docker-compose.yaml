@@ -10,3 +10,21 @@ services:
 
         volumes: 
             - .:/home/node/app
+    db: 
+        build: .docker/postgres
+        container_name: api-jest-store-db
+        restart: always
+        tty: true
+        environment: 
+            - POSTGRES_PASSWORD=root
+            - POSTGRES_DB=store
+            - ./docker/dbdata:/var/lib/postgresql/data    
+    pgadmin: 
+        image: dpage/pgadmin4
+        container_name: api-jest-store-pgadmin4
+        tty: true
+        environment:
+            - PGADMIN_DEFAULT_EMAIL=admin@user.com 
+            - PGADMIN_DEFAULT_PASSWORD=123456
+        ports:
+            - 9011:80
