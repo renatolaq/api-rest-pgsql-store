@@ -5,6 +5,7 @@ import {
   Entity,
 } from 'typeorm';
 // ORM Object Relation Mapper
+// Repository
 @Entity({ name: 'products' })
 export class Product {
   @PrimaryGeneratedColumn('uuid')
